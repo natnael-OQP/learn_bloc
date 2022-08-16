@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:learn_bloc/logic/cubit/counter_cubit.dart';
-import 'package:learn_bloc/presentation/screens/second_screen.dart';
-import 'package:learn_bloc/presentation/screens/third_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -82,33 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<CounterCubit>(context),
-                      child: const SecondScreen(
-                        color: Colors.redAccent,
-                        title: "Second",
-                      ),
-                    ),
-                  ),
-                );
+                Navigator.of(context).pushNamed("/second");
               },
               child: const Text("next page"),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<CounterCubit>(context),
-                      child: const ThirdScreen(
-                        color: Colors.amberAccent,
-                        title: "third",
-                      ),
-                    ),
-                  ),
-                );
+                Navigator.of(context).pushNamed("/third");
               },
               child: const Text("third page"),
             )
