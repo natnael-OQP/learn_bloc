@@ -9,7 +9,12 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final CounterCubit _counterCubit = CounterCubit();
 
   @override
@@ -20,21 +25,27 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => BlocProvider(
-              create: (context) => _counterCubit,
+        '/': (context) => BlocProvider.value(
+              value: _counterCubit,
               child: const HomeScreen(title: 'bloc', color: Colors.blue),
             ),
-        '/second': (context) => BlocProvider(
-              create: (context) => _counterCubit,
+        '/second': (context) => BlocProvider.value(
+              value: _counterCubit,
               child:
                   const SecondScreen(title: "Second", color: Colors.redAccent),
             ),
-        '/third': (context) => BlocProvider(
-              create: (context) => _counterCubit,
+        '/third': (context) => BlocProvider.value(
+              value: _counterCubit,
               child:
                   const ThirdScreen(title: "third", color: Colors.amberAccent),
             ),
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _counterCubit.close();
+    super.dispose();
   }
 }
