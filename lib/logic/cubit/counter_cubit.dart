@@ -5,16 +5,8 @@ part 'counter_state.dart';
 class CounterCubit extends Cubit<CounterState> {
   CounterCubit() : super(CounterState(value: 0, isIncremented: false));
 
-  void increment() => emit(
-        CounterState(
-          value: state.value + 1,
-          isIncremented: true,
-        ),
-      );
-  void decrement() => emit(
-        CounterState(
-          value: state.value - 1,
-          isIncremented: false,
-        ),
-      );
+  void increment() =>
+      emit(CounterState(value: state.value + 1, isIncremented: true));
+  void decrement() =>
+      emit(CounterState(value: state.value - 1, isIncremented: false));
 }
